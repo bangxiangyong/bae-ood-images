@@ -3,6 +3,8 @@ from torchvision import datasets, transforms
 from baetorch.baetorch.plotting import *
 from baetorch.baetorch.util.seed import bae_set_seed
 from baetorch.baetorch.util.misc import load_bae_model
+from baetorch.baetorch.util.distributions import CB_Distribution
+
 import os
 from scipy import stats
 
@@ -138,19 +140,55 @@ def log_gaussian_loss(y_pred_mu, y_true):
 
 #PUBLICATION PLOTS
 #=====min-max bernoulli=====
+cb_dist = CB_Distribution()
 dpi =500
 const_range = np.linspace(0.0000000001, 0.999999999, 1000)
-bernoulli_range_min = [-log_bernoulli_loss_np(const.reshape(1, 1), const.reshape(1, 1)).item() for const in const_range]
+bernoulli_range_max = [-log_bernoulli_loss_np(const.reshape(1, 1), const.reshape(1, 1)).item() for const in const_range]
+cbernoulli_range_max = [-cb_dist.log_cbernoulli_loss_np(torch.Tensor(const.reshape(1, 1)), torch.Tensor(const.reshape(1, 1))).item() for const in const_range]
+gaussian_range_max = [0 for const in const_range]
 
+def plot_maximum_LL(const_range, range_max, dpi=500, figsize_scale=2.5):
+    figsize_scale = 2.5
+    figsize = (int(1.5*figsize_scale),int(1*figsize_scale))
+    plt.figure(figsize=figsize,dpi=dpi)
+    plt.plot(const_range, range_max)
+    font_size_label = "small"
+    plt.xlabel("x",fontsize=font_size_label)
+    plt.ylabel("Maximum Log-likelihood",fontsize=font_size_label)
+
+    plt.tight_layout()
+
+# plot single graph
+# plot_maximum_LL(const_range,bernoulli_range_max)
+# plot_maximum_LL(const_range,cbernoulli_range_max)
+
+#plot 3 graphs side-by-side
+plt.figure()
 figsize_scale = 2.5
-figsize = (int(1.5*figsize_scale),int(1*figsize_scale))
-plt.figure(figsize=figsize,dpi=dpi)
-plt.plot(const_range, bernoulli_range_min)
+figsize = (int(4*figsize_scale),int(1*figsize_scale))
+fig, (ax1,ax2,ax3) = plt.subplots(1,3,figsize=figsize,dpi=dpi)
+ax1.plot(const_range, bernoulli_range_max)
+ax2.plot(const_range, cbernoulli_range_max)
+ax3.plot(const_range, gaussian_range_max)
+
+ax3.set_yticks((1.0,0,-1.0))
+ax3.set_yticklabels(("",r"$-\frac{1}{2}\log{\sigma_i^2}$",""), fontsize=5)
 font_size_label = "small"
-plt.xlabel("x",fontsize=font_size_label)
-plt.ylabel("Maximum Log-likelihood",fontsize=font_size_label)
+ax2.set_xlabel("x",fontsize=font_size_label)
+ax1.set_ylabel("Maximum Log-likelihood",fontsize=font_size_label)
+
+font_size_title = "x-small"
+ax1.set_title("a) Bernoulli", fontsize=font_size_title)
+ax2.set_title("b) C-Bernoulli", fontsize=font_size_title)
+ax3.set_title("c) Gaussian", fontsize=font_size_title)
 
 plt.tight_layout()
+plt.subplots_adjust(top=0.846,
+bottom=0.244,
+left=0.131,
+right=0.985,
+hspace=0.2,
+wspace=0.505)
 
 ##===correlation graphs====
 
