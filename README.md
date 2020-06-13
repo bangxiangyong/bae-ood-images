@@ -35,7 +35,8 @@ The following are samples from BAE, anchored ensembling (FashionMNIST vs MNIST)
 ![alt text](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/pcc_ll.png)
 
 ### Reconstructed images
-(Left) In-distribution , (Right) OOD
+In-distribution (left panel), OOD (right panel)
+
 ![ID](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/id-outputs.png "in-distribution") ![OOD](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/ood-outputs.png "OOD")
 
 
