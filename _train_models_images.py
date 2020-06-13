@@ -1,15 +1,15 @@
-from baetorch.models.base_autoencoder import *
+from baetorch.baetorch.models.base_autoencoder import *
 from torchvision import datasets, transforms
-from baetorch.plotting import *
-from baetorch.test_suite import run_test_model
-from baetorch.lr_range_finder import run_auto_lr_range
-from baetorch.util.misc import save_bae_model
+from baetorch.baetorch.plotting import *
+from baetorch.baetorch.test_suite import run_test_model
+from baetorch.baetorch.lr_range_finder import run_auto_lr_range
+from baetorch.baetorch.util.misc import save_bae_model
 
 #model classes
-from baetorch.models.bae_ensemble import BAE_Ensemble
-from baetorch.models.bae_vi import BAE_VI
-from baetorch.models.bae_vi import VAE
-from baetorch.models.bae_mcdropout import BAE_MCDropout
+from baetorch.baetorch.models.bae_ensemble import BAE_Ensemble
+from baetorch.baetorch.models.bae_vi import BAE_VI
+from baetorch.baetorch.models.bae_vi import VAE
+from baetorch.baetorch.models.bae_mcdropout import BAE_MCDropout
 
 from pprint import pprint
 
