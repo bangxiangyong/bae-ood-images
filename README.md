@@ -23,20 +23,23 @@ Code complementary to our paper "Bayesian Autoencoders: Analysing and Fixing the
 
 ## Figures
 
-The following are samples from BAE, anchored ensembling (FashionMNIST vs MNIST)
-
-### Image similarity histogram
-![alt text](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/ism_hist.png)
-
-### Maximum of Bernoulli log-likelihood varies with input, x
-![alt text](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/max_ll_all_dist.png)
-
-### Checking for confounded by proportion of zeros in image
-![alt text](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/pcc_ll.png)
+The following figures are obtained with samples from BAE, anchored ensembling (FashionMNIST vs MNIST)
 
 ### Reconstructed images
-In-distribution (left panel), OOD (right panel)
+In-distribution (left panel) and OOD (right panel)
 
 ![ID](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/id-outputs.png "in-distribution") ![OOD](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/ood-outputs.png "OOD")
 
+### Image similarity histogram
+BCE (equivalent to Bernoulli likelihood), is a poor measure for image similarity, as compared to well-known image similarity measures: mean-squared error (MSE), structural similarity measure (SSIM) and normalised mutual information (NMI).
+![alt text](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/ism_hist.png)
+
+### Maximum of log-likelihood vary with input, x
+
+Maximum log-likelihood occurs when input `x` is equal to the reconstructed pixel. Bernoulli and Continuous Bernoulli likelihood are influenced by `x`, with the maximum value at `x=0` and `x=1` while Gaussian likelihood does not exhibit such property and remains constant with `x`. This leads to the confounding of likelihood by the proportion of zeros in an image (see next figure); higher likelihood is given to MNIST data (which has higher proportion of zeros due to background) than that of FashionMNIST - regardless of whether the data is OOD or not.
+
+![alt text](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/max_ll_all_dist.png)
+
+### Checking for confounding by proportion of zeros in image
+![alt text](https://github.com/bangxiangyong/bae-ood-images/blob/master/figures/pcc_ll.png)
 
