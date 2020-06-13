@@ -1,8 +1,8 @@
-from baetorch.models.base_autoencoder import *
+from baetorch.baetorch.models.base_autoencoder import *
 from torchvision import datasets, transforms
-from baetorch.plotting import *
-from baetorch.util.seed import bae_set_seed
-from baetorch.util.misc import load_bae_model
+from baetorch.baetorch.plotting import *
+from baetorch.baetorch.util.seed import bae_set_seed
+from baetorch.baetorch.util.misc import load_bae_model
 import os
 from scipy import stats
 

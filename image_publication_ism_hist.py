@@ -1,20 +1,11 @@
-from baetorch.models.base_autoencoder import *
+from baetorch.baetorch.models.base_autoencoder import *
 from torchvision import datasets, transforms
-from baetorch.models.bae_ensemble import BAE_Ensemble
-from baetorch.plotting import *
-from baetorch.test_suite import run_test_model
-from baetorch.lr_range_finder import run_auto_lr_range
-from baetorch.models.bae_mcdropout import BAE_MCDropout
-from baetorch.util.seed import bae_set_seed
-from baetorch.util.misc import get_sample_dataloader, load_bae_model, save_csv_pd
-from baetorch.evaluation import calc_auroc, calc_auprc
+from baetorch.baetorch.plotting import *
+from baetorch.baetorch.util.seed import bae_set_seed
+from baetorch.baetorch.util.misc import load_bae_model
 import pandas as pd
 import os
-from scipy import stats
 
-# import matplotlib
-# matplotlib.use('Agg')
-# import matplotlib.pyplot as plt
 
 #set cuda if available
 use_cuda = torch.cuda.is_available()
@@ -240,7 +231,7 @@ ax11.set_xlabel("-BCE", fontsize=font_size_title)
 ax12.set_xlabel("-MSE", fontsize=font_size_title)
 ax21.set_xlabel("SSIM", fontsize=font_size_title)
 ax22.set_xlabel("NMI", fontsize=font_size_title)
-plt.suptitle("c) Histograms")
+# plt.suptitle("c) Histograms")
 plt.tight_layout()
 plt.subplots_adjust(top=0.963,
 bottom=0.127,
