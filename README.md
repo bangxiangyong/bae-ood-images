@@ -8,8 +8,8 @@ Code complementary to our paper "Bayesian Autoencoders: Analysing and Fixing the
 ## Dataset pairs (in-distribution vs OOD)
 - FashionMNIST vs MNIST
 - MNIST vs FashionMNIST
-- SVHN vs SVHN
-- CIFAR10 vs CIFAR10
+- SVHN vs CIFAR10
+- CIFAR10 vs SVHN
 
 ## Code description
 - `train_models_main.py` for executing the training of the models. Creates a list of whitelisted models in `results`
